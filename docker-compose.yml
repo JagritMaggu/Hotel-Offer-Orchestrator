@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   app:
     build: .
@@ -13,7 +11,7 @@ services:
       - redis
       - temporal
       - mock-suppliers
-    command: ["npx", "concurrently", "\"node dist/server.js\"", "\"node dist/temporal/worker.js\""]
+    command: npm run start
 
   mock-suppliers:
     build: .
@@ -21,7 +19,7 @@ services:
       - "3001:3001"
     environment:
       - MOCK_PORT=3001
-    command: ["node", "dist/mockSuppliersService.js"]
+    command: npm run start:mock
 
   redis:
     image: redis:6.2-alpine
