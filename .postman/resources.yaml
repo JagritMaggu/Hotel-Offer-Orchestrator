@@ -1,0 +1,11 @@
+# Use this workspace to collaborate
+workspace:
+  id: 9c5da3d7-d447-4bb0-85c0-e8bca61cb1ff
+
+localResources:
+  collections:
+    - ../Hotel Offer Orchestrator
+
+cloudResources:
+  collections:
+    ../postman/collections/Hotel Offer Orchestrator: 06294e66-9bca-4d42-8acd-10a091d2db96

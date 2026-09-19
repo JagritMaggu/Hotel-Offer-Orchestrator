@@ -5,8 +5,8 @@
   "scripts": {
     "start": "concurrently \"node dist/server.js\" \"node dist/temporal/worker.js\"",
     "start:mock": "node dist/mockSuppliersService.js",
-    "dev": "concurrently \"ts-node src/server.ts\" \"ts-node src/temporal/worker.ts\"",
-    "dev:mock": "ts-node src/mockSuppliersService.ts",
+    "dev": "concurrently \"tsx src/server.ts\" \"tsx src/temporal/worker.ts\"",
+    "dev:mock": "tsx src/mockSuppliersService.ts",
     "build": "tsc"
   },
   "keywords": [],
@@ -26,7 +26,7 @@
     "@types/express": "^5.0.6",
     "@types/node": "^26.6.2",
     "nodemon": "^3.1.14",
-    "ts-node": "^10.9.2",
+    "tsx": "^4.23.13",
     "typescript": "^7.0.2"
   }
 }

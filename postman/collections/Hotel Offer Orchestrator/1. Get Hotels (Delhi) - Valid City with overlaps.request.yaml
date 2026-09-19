@@ -1,0 +1,6 @@
+$kind: http-request
+url: http://localhost:3000/api/hotels?city=delhi
+method: GET
+queryParams:
+  city: delhi
+order: 1000

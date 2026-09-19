@@ -1,0 +1,8 @@
+$kind: http-request
+url: http://localhost:3000/api/hotels?city=delhi&minPrice=5000&maxPrice=6000
+method: GET
+queryParams:
+  city: delhi
+  minPrice: "5000"
+  maxPrice: "6000"
+order: 2000
