@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - REDIS_URL=redis://redis:6379
+      - TEMPORAL_ADDRESS=temporal:7233
+      - SUPPLIER_API_URL=http://mock-suppliers:3001
+    depends_on:
+      - redis
+      - temporal
+      - mock-suppliers
+    command: ["npx", "concurrently", "\"node dist/server.js\"", "\"node dist/temporal/worker.js\""]
+
+  mock-suppliers:
+    build: .
+    ports:
+      - "3001:3001"
+    environment:
+      - MOCK_PORT=3001
+    command: ["node", "dist/mockSuppliersService.js"]
+
+  redis:
+    image: redis:6.2-alpine
+    ports:
+      - "6379:6379"
+
+  temporal:
+    image: temporalio/auto-setup:1.24.2
+    ports:
+      - "7233:7233"
+      - "8233:8233"
+    environment:
+      - DB=postgresql
+      - DB_PORT=5432
+      - POSTGRES_USER=temporal
+      - POSTGRES_PWD=temporal
+      - POSTGRES_SEEDS=temporal-postgresql
+      - DYNAMIC_CONFIG_FILE_PATH=config/dynamicconfig/development-sql.yaml
+    depends_on:
+      - temporal-postgresql
+
+  temporal-postgresql:
+    image: postgres:13
+    environment:
+      - POSTGRES_USER=temporal
+      - POSTGRES_PASSWORD=temporal
+    ports:
+      - "5432:5432"

@@ -1,0 +1,32 @@
+{
+  "name": "hotel-offer-orchestrator",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \"node dist/server.js\" \"node dist/temporal/worker.js\"",
+    "start:mock": "node dist/mockSuppliersService.js",
+    "dev": "concurrently \"ts-node src/server.ts\" \"ts-node src/temporal/worker.ts\"",
+    "dev:mock": "ts-node src/mockSuppliersService.ts",
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@temporalio/activity": "^1.24.0",
+    "@temporalio/client": "^1.24.0",
+    "@temporalio/worker": "^1.24.0",
+    "@temporalio/workflow": "^1.24.0",
+    "concurrently": "^10.0.5",
+    "express": "^5.2.1",
+    "redis": "^6.2.1"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.6.2",
+    "nodemon": "^3.1.14",
+    "ts-node": "^10.9.2",
+    "typescript": "^7.0.2"
+  }
+}
